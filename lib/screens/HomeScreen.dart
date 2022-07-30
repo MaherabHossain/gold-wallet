@@ -3,7 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/presentations/TextInfo.dart';
 import 'package:myapp/widgets/Banner.dart';
+import 'package:myapp/widgets/MenuIcon.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+
+import '../models/ChartData.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -53,13 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-                      InkWell(
-                        onTap: () {},
-                        child: Icon(
-                          Icons.menu,
-                          color: basicTextColor,
-                        ),
-                      )
+                      MenuIcon()
                     ],
                   ),
                   SizedBox(
@@ -167,12 +164,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-}
-
-class ChartData {
-  ChartData(this.x, this.y);
-  final String x;
-  final double? y;
 }
 
 Widget Card(Icon icon, text) {

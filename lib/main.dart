@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:myapp/screens/HomeScreen.dart';
+import 'package:myapp/screens/MarketPlaceScreen.dart';
 import 'package:myapp/screens/ProfileScreen.dart';
 
 void main() {
@@ -22,11 +23,19 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           primarySwatch: Colors.deepOrange,
           scaffoldBackgroundColor: Color.fromARGB(255, 25, 44, 61)),
-      home: HomeScreen(),
+      home: MarketPlaceScreen(),
       getPages: [
+        GetPage(
+          name: '/home',
+          page: () => HomeScreen(),
+        ),
         GetPage(
           name: '/profile',
           page: () => ProfileSceen(),
+        ),
+        GetPage(
+          name: '/marketplace',
+          page: () => MarketPlaceScreen(),
         ), // Dynamic route
       ],
     );
