@@ -23,15 +23,16 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           primarySwatch: Colors.deepOrange,
           scaffoldBackgroundColor: Color.fromARGB(255, 25, 44, 61)),
-      home: MarketPlaceScreen(),
+      home: ProfileScreen(),
       getPages: [
         GetPage(
           name: '/home',
           page: () => HomeScreen(),
         ),
+
         GetPage(
           name: '/profile',
-          page: () => ProfileSceen(),
+          page: () => ProfileScreen(),
         ),
         GetPage(
           name: '/marketplace',
