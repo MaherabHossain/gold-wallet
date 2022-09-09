@@ -5,6 +5,8 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:myapp/screens/DepositScreen.dart';
 import 'package:myapp/screens/HomeScreen.dart';
 import 'package:myapp/screens/MarketPlaceScreen.dart';
+import 'package:myapp/screens/NewsScreen/NewsScreen.dart';
+
 import 'package:myapp/screens/ProfileScreen.dart';
 
 void main() {
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           primarySwatch: Colors.deepOrange,
           scaffoldBackgroundColor: Color.fromARGB(255, 25, 44, 61)),
-      home: DepositScreen(),
+      home: NewsScreen(),
       getPages: [
         GetPage(
           name: '/home',
