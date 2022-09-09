@@ -5,6 +5,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:myapp/screens/DepositScreen.dart';
 import 'package:myapp/screens/HomeScreen.dart';
 import 'package:myapp/screens/MarketPlaceScreen.dart';
+import 'package:myapp/screens/NewsScreen/NewsDetails.dart';
 import 'package:myapp/screens/NewsScreen/NewsScreen.dart';
 
 import 'package:myapp/screens/ProfileScreen.dart';
@@ -26,11 +27,19 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
           primarySwatch: Colors.deepOrange,
           scaffoldBackgroundColor: Color.fromARGB(255, 25, 44, 61)),
-      home: NewsScreen(),
+      home: NewsDetails(),
       getPages: [
         GetPage(
           name: '/home',
           page: () => HomeScreen(),
+        ),
+        GetPage(
+          name: '/news',
+          page: () => NewsScreen(),
+        ),
+        GetPage(
+          name: '/newsDetails',
+          page: () => NewsDetails(),
         ),
         GetPage(
           name: '/profile',
