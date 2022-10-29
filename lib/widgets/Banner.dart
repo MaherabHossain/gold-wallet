@@ -13,7 +13,7 @@ Widget BannerImage() {
             borderRadius: BorderRadius.circular(8.0),
             image: DecorationImage(
               image: NetworkImage(
-                  "https://static.vecteezy.com/system/resources/thumbnails/004/299/835/small/online-shopping-on-phone-buy-sell-business-digital-web-banner-application-money-advertising-payment-ecommerce-illustration-search-free-vector.jpg"),
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhs-S2WIGlSISDXrpr3TQCsm2MlGCr2mNcug&usqp=CAU"),
               fit: BoxFit.cover,
             ),
           ),
@@ -24,7 +24,7 @@ Widget BannerImage() {
             borderRadius: BorderRadius.circular(8.0),
             image: DecorationImage(
               image: NetworkImage(
-                  "https://static.vecteezy.com/system/resources/thumbnails/001/937/856/small/paper-art-shopping-online-on-smartphone-sale-promotion-backgroud-banner-for-market-ecommerce-free-vector.jpg"),
+                  "https://img.freepik.com/free-photo/gold-growing-arrow-with-gold-coin-money-stacks-gold-bar-business-finance-savings-investment-concept-background-3d-illustration_56104-1960.jpg?w=2000"),
               fit: BoxFit.cover,
             ),
           ),
@@ -35,7 +35,7 @@ Widget BannerImage() {
             borderRadius: BorderRadius.circular(8.0),
             image: DecorationImage(
               image: NetworkImage(
-                  'https://static.vecteezy.com/system/resources/thumbnails/004/299/815/small/online-shopping-on-phone-buy-sell-business-digital-web-banner-application-money-advertising-payment-ecommerce-illustration-search-vector.jpg'),
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgoWCSkN5CnvolDrEnYgPnOCaMsTTlt7ymYQ&usqp=CAU'),
               fit: BoxFit.cover,
             ),
           ),

@@ -23,7 +23,6 @@ class _NewsScreenState extends State<NewsScreen> {
           child: Row(
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
               Text(
                 "News",
                 style: TextStyle(
@@ -41,12 +40,6 @@ class _NewsScreenState extends State<NewsScreen> {
           padding: EdgeInsets.only(left: 15, right: 15, top: 8),
           child: ListView(
             children: [
-              NewsCard(),
-              NewsCard(),
-              NewsCard(),
-              NewsCard(),
-              NewsCard(),
-              NewsCard(),
               NewsCard(),
             ],
           )),

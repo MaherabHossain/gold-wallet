@@ -1,9 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:myapp/presentations/TextInfo.dart';
+import 'package:myapp/screens/DepositScreen.dart';
 import 'package:myapp/widgets/Banner.dart';
 import 'package:myapp/widgets/MenuIcon.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../models/ChartData.dart';
@@ -16,6 +19,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  var userInfo = [];
+  getHomePageData() async {
+    final prefs = await SharedPreferences.getInstance();
+    userInfo = prefs.getStringList('userInfo')!;
+    print("LOG:: printing userinfo form home screen!");
+    print(userInfo[0]);
+  }
+
+  @override
+  void initState() {
+    getHomePageData();
+    // TODO: implement initState
+    super.initState();
+  }
+
   String welcome = "WElcome";
   @override
   Widget build(BuildContext context) {
@@ -47,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: 4,
                           ),
                           Text(
-                            "Maherab",
+                            userInfo.isNotEmpty ? userInfo[0] : "",
                             style: TextStyle(
                               color: basicTextColor,
                               fontSize: 20,
@@ -56,7 +74,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-                      MenuIcon()
                     ],
                   ),
                   SizedBox(
@@ -74,25 +91,29 @@ class _HomeScreenState extends State<HomeScreen> {
                             Icons.add,
                             color: Colors.black,
                           ),
-                          "Diposit"),
+                          "Diposit",
+                          "deposit"),
                       Card(
                           Icon(
                             Icons.arrow_circle_up_rounded,
                             color: Colors.black,
                           ),
-                          "Reffer"),
+                          "Reffer",
+                          "deposit"),
                       Card(
                           Icon(
                             Icons.money_off,
                             color: Colors.black,
                           ),
-                          "Withdraw"),
+                          "Withdraw",
+                          "deposit"),
                       Card(
                           Icon(
                             Icons.newspaper,
                             color: Colors.black,
                           ),
-                          "Blogs"),
+                          "Blogs",
+                          "news"),
                     ],
                   ),
                   SizedBox(
@@ -166,9 +187,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-Widget Card(Icon icon, text) {
+Widget Card(Icon icon, text, screen) {
   return InkWell(
-    onTap: () {},
+    onTap: () {
+      Get.toNamed(screen);
+      print("Tapped");
+    },
     child: Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),

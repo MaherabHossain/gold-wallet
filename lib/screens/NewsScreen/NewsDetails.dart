@@ -24,7 +24,6 @@ class _NewsDetailsState extends State<NewsDetails> {
           child: Row(
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
               Text(
                 "News details",
                 style: TextStyle(
@@ -60,7 +59,7 @@ class _NewsDetailsState extends State<NewsDetails> {
             Container(
               padding: EdgeInsets.all(15),
               child: Text(
-                "Another option is to use Cached work Image to doin the best ",
+                "Gold bounces back, recovers above \$1,700",
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w600,
@@ -70,7 +69,7 @@ class _NewsDetailsState extends State<NewsDetails> {
             Container(
               padding: EdgeInsets.only(left: 15, right: 15, bottom: 50),
               child: Text(
-                "Another option is to use Cached work Image to doin the best  Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best  Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best  Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best  Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best  Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best  Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best  Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best Another option is to use Cached work Image to doin the best ",
+                "Gold came under selling pressure and fell to a fresh daily low of \$1,690.55 on Friday before recovering modestly. Following the upbeat labor market figures from the US, the benchmark 10-year US Treasury bond yield is up more than 1% on the day, weighing on XAU/USD. Gold came under selling pressure and fell to a fresh daily low of \$1,690.55 on Friday before recovering modestly. Following the upbeat labor market figures from the US, the benchmark 10-year US Treasury bond yield is up more than 1% on the day, weighing on XAU/USD.",
                 textAlign: TextAlign.justify,
                 style: TextStyle(
                   fontSize: 16,

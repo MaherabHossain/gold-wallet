@@ -36,119 +36,121 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
         backgroundColor: Color.fromARGB(255, 25, 44, 61),
       ),
-      body: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.only(top: 20, left: 20, right: 20),
-            child: Center(
-              child: Column(
-                // mainAxisAlignment: MainAxisAlignment.start,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 20, left: 20, right: 20),
+              child: Center(
+                child: Column(
+                  // mainAxisAlignment: MainAxisAlignment.start,
 
-                children: [
-                  CircleAvatar(
-                    maxRadius: 50,
-                    backgroundColor: Colors.white,
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Maherab Hossain",
-                    style: TextStyle(
-                      color: basicTextColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 28,
+                  children: [
+                    CircleAvatar(
+                      maxRadius: 50,
+                      backgroundColor: Colors.white,
                     ),
-                  )
-                ],
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Maherab Hossain",
+                      style: TextStyle(
+                        color: basicTextColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 28,
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                children: [
-                  Text(
-                    "BDT",
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 20,
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  children: [
+                    Text(
+                      "BDT",
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "64000.00 TK",
-                    style: TextStyle(
-                      color: basicTextColor,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 20,
+                    SizedBox(
+                      height: 10,
                     ),
-                  )
-                ],
-              ),
-              Column(
-                children: [
-                  Text(
-                    "GOLD",
-                    style: TextStyle(
-                      color: Colors.yellow,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 20,
+                    Text(
+                      "64000.00 TK",
+                      style: TextStyle(
+                        color: basicTextColor,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                      ),
+                    )
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text(
+                      "GOLD",
+                      style: TextStyle(
+                        color: Colors.yellow,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "4.00 G",
-                    style: TextStyle(
-                      color: basicTextColor,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 20,
+                    SizedBox(
+                      height: 10,
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                ],
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(width: 1, color: basicTextColor),
+                    Text(
+                      "4.00 G",
+                      style: TextStyle(
+                        color: basicTextColor,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(width: 1, color: basicTextColor),
+                ),
               ),
             ),
-          ),
-          ListView(
-            shrinkWrap: true,
-            children: [
-              Card(context),
-              Card(context),
-              Card(context),
-              Card(context),
-              Card(context),
-              Card(context),
-            ],
-          )
-        ],
+            ListView(
+              shrinkWrap: true,
+              children: [
+                Card(context, "Diposit"),
+                Card(context, "Withdraw"),
+                Card(context, "Reffer"),
+                Card(context, "Transaction"),
+                Card(context, "News"),
+                Card(context, "Logout"),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
 }
 
-Widget Card(context) {
+Widget Card(context, title) {
   return Container(
     padding: EdgeInsets.only(left: 20, top: 15, bottom: 15),
     width: MediaQuery.of(context).size.height,
@@ -157,7 +159,7 @@ Widget Card(context) {
       bottom: BorderSide(width: 1, color: basicTextColor),
     )),
     child: Text(
-      "Transictions",
+      title,
       style: TextStyle(
         fontSize: 20,
       ),

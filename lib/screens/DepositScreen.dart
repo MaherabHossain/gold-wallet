@@ -25,7 +25,6 @@ class _DepositScreenState extends State<DepositScreen> {
           child: Row(
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
               Text(
                 "Deposit",
                 style: TextStyle(
@@ -169,7 +168,7 @@ class _DepositScreenState extends State<DepositScreen> {
                     padding: EdgeInsets.only(
                         left: 20, right: 20, top: 10, bottom: 10),
                     child: Center(
-                      child: Text("Nagad"),
+                      child: Text("Roket"),
                     ),
                   ),
                 ),
