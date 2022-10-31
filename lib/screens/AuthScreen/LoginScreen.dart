@@ -1,9 +1,10 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_typing_uninitialized_variables, no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myapp/controller/AuthController.dart';
 import 'package:myapp/screens/AuthScreen/RegisterScreen.dart';
+import 'package:myapp/screens/HomePage.dart';
 import 'package:myapp/screens/HomeScreen.dart';
 import 'package:myapp/utilities/showToastMessage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,12 +17,16 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String token = "";
+  var token = "";
   checkLogin() async {
     final prefs = await SharedPreferences.getInstance();
-    token = prefs.getString('token')!;
+    var _token;
+    _token = prefs.getString('token');
+    if (_token != null) {
+      token = _token;
+    }
     if (token.isNotEmpty) {
-      Get.off(HomeScreen());
+      Get.off(HomePage());
     }
   }
 
@@ -123,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                         if (response['status']) {
                                           showToastMessage(response['message']);
-                                          Get.to(HomeScreen());
+                                          Get.to(HomePage());
                                         } else {
                                           showToastMessage(response['message']);
                                         }

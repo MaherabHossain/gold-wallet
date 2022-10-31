@@ -1,9 +1,9 @@
-// ignore_for_file: prefer_interpolation_to_compose_strings, unused_local_variable, prefer_typing_uninitialized_variables
+// ignore_for_file: prefer_interpolation_to_compose_strings, unused_local_variable, prefer_typing_uninitialized_variables, depend_on_referenced_packages
 
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+
 import 'package:myapp/utilities/api.dart';
 
 class AuthRemoteServices {

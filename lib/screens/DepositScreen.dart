@@ -1,6 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, non_constant_identifier_names, sized_box_for_whitespace, unused_local_variable
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, non_constant_identifier_names, sized_box_for_whitespace, unused_local_variable, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:myapp/controller/TransactionController.dart';
 import 'package:myapp/presentations/TextInfo.dart';
 
 class DepositScreen extends StatefulWidget {
@@ -11,9 +13,13 @@ class DepositScreen extends StatefulWidget {
 }
 
 class _DepositScreenState extends State<DepositScreen> {
+  final trnsactionController = Get.put(TransactionController());
   bool bkash = false;
   bool nagad = false;
   bool roket = false;
+  var phoneNumber = "";
+  var amount;
+  var trx_id;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +51,9 @@ class _DepositScreenState extends State<DepositScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
+              onChanged: (value) {
+                amount = value;
+              },
               cursorColor: Colors.green,
               decoration: InputDecoration(
                 labelText: 'Enter Amount',
@@ -199,6 +208,9 @@ class _DepositScreenState extends State<DepositScreen> {
                     height: 10,
                   ),
                   TextFormField(
+                    onChanged: (value) {
+                      phoneNumber = value;
+                    },
                     cursorColor: Colors.green,
                     decoration: InputDecoration(
                       labelText: 'Enter phone number',
@@ -222,6 +234,9 @@ class _DepositScreenState extends State<DepositScreen> {
                     height: 10,
                   ),
                   TextFormField(
+                    onChanged: (value) {
+                      trx_id = value;
+                    },
                     cursorColor: Colors.green,
                     decoration: InputDecoration(
                       labelText: 'Enter trxID',
@@ -244,17 +259,45 @@ class _DepositScreenState extends State<DepositScreen> {
                   SizedBox(
                     height: 10,
                   ),
-                  Center(
-                    child: ElevatedButton(
-                        onPressed: () {},
-                        // ignore: sort_child_properties_last
-                        child: Text(
-                          "Pay",
-                        ),
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.green),
-                        )),
+                  Obx(
+                    () => Center(
+                      child: ElevatedButton(
+                          onPressed: () async {
+                            var payment_method;
+                            if (bkash) {
+                              payment_method = "bkash";
+                            }
+                            if (nagad) {
+                              payment_method = "nagad";
+                            }
+                            if (roket) {
+                              payment_method = "roket";
+                            }
+                            Map transiction = {
+                              "transaction_type": "1",
+                              "amount": amount,
+                              "phone_number": phoneNumber,
+                              "payment_method": payment_method,
+                              "trx_id": trx_id
+                            };
+                            trnsactionController.isLoading.value = true;
+                            var response = await trnsactionController
+                                .transaction(transiction);
+                            trnsactionController.isLoading.value = false;
+                            print("LOG:: printing transaction details");
+                            print(transiction);
+                          },
+                          // ignore: sort_child_properties_last
+                          child: trnsactionController.isLoading.value
+                              ? CircularProgressIndicator(
+                                  color: Colors.white,
+                                )
+                              : Text("Pay"),
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.green),
+                          )),
+                    ),
                   )
                 ],
               )

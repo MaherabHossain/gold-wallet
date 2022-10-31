@@ -19,12 +19,11 @@ class _MarketPlaceScreenState extends State<MarketPlaceScreen> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Container(
-            padding: EdgeInsets.only(right: 20, top: 25),
             child: Row(
               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
                 Text(
                   "Marketplace",
                   style: TextStyle(

@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
     userInfo = prefs.getStringList('userInfo')!;
     print("LOG:: printing userinfo form home screen!");
     print(userInfo[0]);
+    setState(() {});
   }
 
   @override
