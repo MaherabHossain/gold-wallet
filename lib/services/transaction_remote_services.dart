@@ -46,4 +46,39 @@ class TransactionRemoteServices {
       return {"status": false, "message": "something went wrong! try again"};
     }
   }
+
+  static checkBalance() async {
+    Map data = {};
+    String url = baseUrl + "/balance";
+    final prefs = await SharedPreferences.getInstance();
+    var _token = prefs.getString("token");
+    String token = "Bearer " + _token!;
+    var response = await client.get(
+      Uri.parse(url),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        "Accept": "application/json",
+        "Authorization": token,
+      },
+    );
+    var jsonString = response.body;
+    var jsonData;
+    try {
+      jsonData = jsonDecode(jsonString);
+    } catch (e) {
+      jsonData = [];
+      data = {
+        "status": false,
+        "message": "Something went wrong",
+      };
+      return data;
+    }
+    print("LOG:: printing response form login api!");
+    print(response.body);
+    if (response.statusCode == 200) {
+      return {"status": true, "balance": jsonData['data']};
+    } else {
+      return {"status": false, "message": "something went wrong!"};
+    }
+  }
 }

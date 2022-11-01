@@ -107,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: Colors.black,
                           ),
                           "Withdraw",
-                          "deposit"),
+                          "withdraw"),
                       Card(
                           Icon(
                             Icons.newspaper,

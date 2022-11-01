@@ -12,6 +12,7 @@ import 'package:myapp/screens/NewsScreen/NewsDetails.dart';
 import 'package:myapp/screens/NewsScreen/NewsScreen.dart';
 
 import 'package:myapp/screens/ProfileScreen.dart';
+import 'package:myapp/screens/WithdrawScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -64,6 +65,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/deposit',
           page: () => DepositScreen(),
+        ),
+        GetPage(
+          name: '/withdraw',
+          page: () => WithdrawScreen(),
         ), // Dynamic route
       ],
     );
