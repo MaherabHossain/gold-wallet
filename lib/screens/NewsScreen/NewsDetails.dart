@@ -4,9 +4,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:myapp/presentations/TextInfo.dart';
+import 'package:myapp/utilities/api.dart';
 
 class NewsDetails extends StatefulWidget {
-  const NewsDetails({Key? key}) : super(key: key);
+  var newsDeatils;
+  NewsDetails(this.newsDeatils);
 
   @override
   State<NewsDetails> createState() => _NewsDetailsState();
@@ -39,6 +41,7 @@ class _NewsDetailsState extends State<NewsDetails> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: EdgeInsets.only(
@@ -49,8 +52,7 @@ class _NewsDetailsState extends State<NewsDetails> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(4.0),
                 child: CachedNetworkImage(
-                  imageUrl:
-                      "https://images.unsplash.com/photo-1610375461246-83df859d849d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z29sZHxlbnwwfHwwfHw%3D&w=1000&q=80",
+                  imageUrl: appUrl + "/" + widget.newsDeatils['image_url'],
                   placeholder: (context, url) => CircularProgressIndicator(),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
@@ -59,7 +61,7 @@ class _NewsDetailsState extends State<NewsDetails> {
             Container(
               padding: EdgeInsets.all(15),
               child: Text(
-                "Gold bounces back, recovers above \$1,700",
+                widget.newsDeatils['title'],
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w600,
@@ -69,7 +71,7 @@ class _NewsDetailsState extends State<NewsDetails> {
             Container(
               padding: EdgeInsets.only(left: 15, right: 15, bottom: 50),
               child: Text(
-                "Gold came under selling pressure and fell to a fresh daily low of \$1,690.55 on Friday before recovering modestly. Following the upbeat labor market figures from the US, the benchmark 10-year US Treasury bond yield is up more than 1% on the day, weighing on XAU/USD. Gold came under selling pressure and fell to a fresh daily low of \$1,690.55 on Friday before recovering modestly. Following the upbeat labor market figures from the US, the benchmark 10-year US Treasury bond yield is up more than 1% on the day, weighing on XAU/USD.",
+                widget.newsDeatils['description'],
                 textAlign: TextAlign.justify,
                 style: TextStyle(
                   fontSize: 16,

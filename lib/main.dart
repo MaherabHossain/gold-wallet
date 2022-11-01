@@ -50,10 +50,10 @@ class MyApp extends StatelessWidget {
           name: '/news',
           page: () => NewsScreen(),
         ),
-        GetPage(
-          name: '/newsDetails',
-          page: () => NewsDetails(),
-        ),
+        // GetPage(
+        //   name: '/newsDetails',
+        //   page: () => NewsDetails(),
+        // ),
         GetPage(
           name: '/profile',
           page: () => ProfileScreen(),

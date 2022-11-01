@@ -7,9 +7,11 @@ import 'package:get/get.dart';
 import 'package:myapp/presentations/TextInfo.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:myapp/screens/NewsScreen/NewsDetails.dart';
+import 'package:myapp/utilities/api.dart';
 
 class NewsCard extends StatefulWidget {
-  const NewsCard({Key? key}) : super(key: key);
+  var newsDeatils;
+  NewsCard(this.newsDeatils);
 
   @override
   State<NewsCard> createState() => _NewsCardState();
@@ -20,7 +22,7 @@ class _NewsCardState extends State<NewsCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(NewsDetails());
+        Get.to(NewsDetails(widget.newsDeatils));
       },
       child: Container(
         // ignore: sort_child_properties_last
@@ -38,8 +40,7 @@ class _NewsCardState extends State<NewsCard> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(4.0),
                 child: CachedNetworkImage(
-                  imageUrl:
-                      "https://images.unsplash.com/photo-1610375461246-83df859d849d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Z29sZHxlbnwwfHwwfHw%3D&w=1000&q=80",
+                  imageUrl: appUrl + "/" + widget.newsDeatils['image_url'],
                   placeholder: (context, url) => CircularProgressIndicator(),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
@@ -52,7 +53,7 @@ class _NewsCardState extends State<NewsCard> {
                   width: 272,
                   padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
                   child: Text(
-                    "Gold bounces back, recovers above \$1,700 ",
+                    widget.newsDeatils['title'],
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
