@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:myapp/controller/GoldController.dart';
 import 'package:myapp/presentations/TextInfo.dart';
 import 'package:myapp/screens/DepositScreen.dart';
 import 'package:myapp/widgets/Banner.dart';
@@ -19,12 +20,22 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final goldController = Get.put(GoldController());
   var userInfo = [];
+  List<ChartData> dataSource = [];
   getHomePageData() async {
     final prefs = await SharedPreferences.getInstance();
     userInfo = prefs.getStringList('userInfo')!;
     print("LOG:: printing userinfo form home screen!");
     print(userInfo[0]);
+    setState(() {});
+    await goldController.getGoldPrice();
+    for (int i = 0; i < goldController.goldPrice.length; ++i) {
+      dataSource.add(
+        ChartData(goldController.goldPrice[i]['date'],
+            double.parse(goldController.goldPrice[i]['buy_price'])),
+      );
+    }
     setState(() {});
   }
 
@@ -131,53 +142,25 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    //Initialize chart
-                    child: SfCartesianChart(
-                        primaryXAxis: CategoryAxis(),
-                        series: <ChartSeries>[
-                          // Initialize line series
-                          LineSeries<ChartData, String>(
-                              enableTooltip: true,
-                              dataSource: [
-                                // Bind data source
-                                ChartData('1', 6000),
-                                ChartData('2', 6100),
-                                ChartData('3', 6050),
-                                ChartData('4', 6010),
-                                ChartData('5', 6200),
-                                ChartData('6', 6100),
-                                ChartData('7', 6500),
-                                ChartData('8', 6400),
-                                ChartData('9', 6020),
-                                ChartData('10', 6100),
-                                ChartData('11', 6050),
-                                ChartData('12', 6050),
-                                ChartData('13', 6700),
-                                ChartData('14', 6720),
-                                ChartData('15', 6050),
-                                ChartData('16', 6150),
-                                ChartData('17', 6850),
-                                ChartData('18', 6950),
-                                ChartData('19', 7050),
-                                ChartData('20', 6950),
-                                ChartData('21', 7050),
-                                ChartData('22', 7100),
-                                ChartData('23', 7050),
-                                ChartData('24', 6720),
-                                ChartData('25', 7720),
-                                ChartData('26', 7300),
-                                ChartData('27', 7200),
-                                ChartData('28', 7320),
-                                ChartData('29', 7312),
-                                ChartData('30', 6700)
-                              ],
-                              xAxisName: "Date",
-                              yAxisName: "TK",
-                              xValueMapper: (ChartData data, _) => data.x,
-                              yValueMapper: (ChartData data, _) => data.y)
-                        ]),
-                  ),
+                  !goldController.isLoading.value
+                      ? Container(
+                          //Initialize chart
+                          child: SfCartesianChart(
+                              primaryXAxis: CategoryAxis(),
+                              series: <ChartSeries>[
+                                // Initialize line series
+                                LineSeries<ChartData, String>(
+                                    enableTooltip: true,
+                                    dataSource: dataSource,
+                                    xAxisName: "Date",
+                                    yAxisName: "TK",
+                                    xValueMapper: (ChartData data, _) => data.x,
+                                    yValueMapper: (ChartData data, _) => data.y)
+                              ]),
+                        )
+                      : Center(
+                          child: CircularProgressIndicator(),
+                        )
                 ],
               ),
             )
