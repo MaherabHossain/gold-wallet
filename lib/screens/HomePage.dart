@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -8,7 +8,8 @@ import 'package:myapp/screens/MarketPlaceScreen.dart';
 import 'package:myapp/screens/ProfileScreen.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  var buySellGold;
+  HomePage({this.buySellGold});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -16,6 +17,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var initialPage = 0;
+  @override
+  void initState() {
+    if (widget.buySellGold != null) {
+      initialPage = 2;
+    }
+    super.initState();
+  }
+
   final _pages = [
     HomeScreen(),
     MarketPlaceScreen(),

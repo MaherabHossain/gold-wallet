@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:myapp/screens/AuthScreen/LoginScreen.dart';
 import 'package:myapp/screens/AuthScreen/RegisterScreen.dart';
+import 'package:myapp/screens/BuySellScreen.dart';
 import 'package:myapp/screens/DepositScreen.dart';
 import 'package:myapp/screens/HomePage.dart';
 import 'package:myapp/screens/HomeScreen.dart';
@@ -65,6 +66,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/deposit',
           page: () => DepositScreen(),
+        ),
+        GetPage(
+          name: '/buy-sell',
+          page: () => BuySellScreen(),
         ),
         GetPage(
           name: '/withdraw',

@@ -1,6 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, non_constant_identifier_names, sized_box_for_whitespace, unused_local_variable
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, non_constant_identifier_names, sized_box_for_whitespace, unused_local_variable, prefer_adjacent_string_concatenation, prefer_if_null_operators
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:myapp/controller/TransactionController.dart';
 import 'package:myapp/presentations/TextInfo.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -11,6 +13,25 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final transactionController = Get.put(TransactionController());
+  var balance_tk;
+  var balance_gold;
+  checkBalance() async {
+    var response = await transactionController.checkBalance();
+    print("Log:: printing response from withdraw sereen!");
+    print(response['balance']);
+    setState(() {
+      balance_tk = response['balance']['balance_tk'];
+      balance_gold = response['balance']['balance_gold'];
+    });
+  }
+
+  @override
+  void initState() {
+    checkBalance();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,7 +103,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       height: 10,
                     ),
                     Text(
-                      "64000.00 TK",
+                      balance_tk != null ? balance_tk + " TK" : "00" + " TK",
                       style: TextStyle(
                         color: basicTextColor,
                         fontWeight: FontWeight.w400,
@@ -105,7 +126,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       height: 10,
                     ),
                     Text(
-                      "4.00 G",
+                      balance_gold != null ? balance_gold + " G" : "00" + " G",
                       style: TextStyle(
                         color: basicTextColor,
                         fontWeight: FontWeight.w400,
@@ -129,17 +150,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
-            ListView(
-              shrinkWrap: true,
-              children: [
-                Card(context, "Diposit"),
-                Card(context, "Withdraw"),
-                Card(context, "Reffer"),
-                Card(context, "Transaction"),
-                Card(context, "News"),
-                Card(context, "Logout"),
-              ],
-            )
+            Container(
+                padding: EdgeInsets.only(bottom: 100),
+                child: Column(
+                  children: [
+                    Card(context, "Diposit", '/deposit'),
+                    Card(context, "Withdraw", '/withdraw'),
+                    // Card(context, "Transaction"),
+                    Card(context, "News", "/news"),
+                    Card(context, "Buy/Sell", "/buy-sell"),
+                    // Card(context, "Logout"),
+                  ],
+                )),
           ],
         ),
       ),
@@ -147,18 +169,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 }
 
-Widget Card(context, title) {
-  return Container(
-    padding: EdgeInsets.only(left: 20, top: 15, bottom: 15),
-    width: MediaQuery.of(context).size.height,
-    decoration: BoxDecoration(
-        border: Border(
-      bottom: BorderSide(width: 1, color: basicTextColor),
-    )),
-    child: Text(
-      title,
-      style: TextStyle(
-        fontSize: 20,
+Widget Card(context, title, page) {
+  return InkWell(
+    onTap: () {
+      print("LOG:: Tapped!");
+      Get.toNamed(page);
+    },
+    child: Container(
+      padding: EdgeInsets.only(left: 20, top: 15, bottom: 15),
+      width: MediaQuery.of(context).size.height,
+      decoration: BoxDecoration(
+          border: Border(
+        bottom: BorderSide(width: 1, color: basicTextColor),
+      )),
+      child: Text(
+        title,
+        style: TextStyle(
+          fontSize: 20,
+        ),
       ),
     ),
   );
