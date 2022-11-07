@@ -8,6 +8,7 @@ class NewsController extends GetxController {
     isLoading.value = true;
     var response = await NewsRemoteServices.getNews();
     if (response['status']) {
+      // var newsList = [].obs;
       newsList.value = response['data'];
       print("LOG:: from news controller!");
       print(newsList);

@@ -1,9 +1,12 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, non_constant_identifier_names, sized_box_for_whitespace, unnecessary_new, avoid_print
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, non_constant_identifier_names, sized_box_for_whitespace, unnecessary_new, avoid_print, prefer_interpolation_to_compose_strings
 
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:get/get.dart';
+import 'package:myapp/controller/MarketPlaceController.dart';
 import 'package:myapp/presentations/TextInfo.dart';
 
 class BuyScreen extends StatefulWidget {
@@ -14,71 +17,74 @@ class BuyScreen extends StatefulWidget {
 }
 
 class _BuyScreenState extends State<BuyScreen> {
+  final marketPlaceController = Get.put(MarketPlaceController());
+  getBuyList() {
+    marketPlaceController.getBuyList();
+  }
+
+  @override
+  void initState() {
+    getBuyList();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         padding: EdgeInsets.only(left: 10, right: 10, top: 20),
         child: RefreshIndicator(
-          onRefresh: () async {},
-          color: Colors.green,
-          child: ListView(
-            children: [
-              Card(),
-              Card(),
-              Card(),
-              Card(),
-              Card(),
-              Card(),
-              Card(),
-              Card(),
-              Card(),
-              Card(),
-              Card(),
-              Card(),
-              Card(),
-              Card(),
-              Card(),
-              Card(),
-              Card(),
-            ],
-          ),
-        ),
+            onRefresh: () async {},
+            color: Colors.green,
+            child: Obx(() => !marketPlaceController.isLoading.value
+                ? Column(
+                    children: [
+                      if (marketPlaceController.buyList != null)
+                        Column(
+                          children: [
+                            for (int i = 0;
+                                i < marketPlaceController.buyList.length;
+                                ++i)
+                              Card(marketPlaceController.buyList[i]),
+                          ],
+                        )
+                      else
+                        Center(
+                          child: Text("Not Available!"),
+                        )
+                    ],
+                  )
+                : Center(
+                    child: CircularProgressIndicator(),
+                  ))),
       ),
     );
   }
 }
 
-Widget Card() {
+Widget Card(buyDetails) {
   return Container(
     margin: EdgeInsets.only(bottom: 10),
     height: 59,
+    padding: EdgeInsets.symmetric(horizontal: 10),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10),
       color: basicTextColor,
     ),
     child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          margin: EdgeInsets.only(left: 10),
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            color: Colors.black,
-          ),
-        ),
         SizedBox(width: 6),
         Text(
-          "Maherab Hossain",
+          "GOLD",
           style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w600,
+            fontSize: 20,
+            color: Color.fromARGB(255, 0, 0, 0),
+            fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(width: 6),
         Text(
-          "2.0 G",
+          buyDetails['amount'] + " G",
           style: TextStyle(
             fontSize: 20,
             color: Colors.green,
@@ -87,10 +93,22 @@ Widget Card() {
         ),
         SizedBox(width: 6),
         Text(
-          "29-7-2022",
+          "PRICE",
           style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w600,
+            fontSize: 20,
+            color: Color.fromARGB(255, 0, 0, 0),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Text(
+          (int.parse(buyDetails['unit_price']) *
+                      int.parse(buyDetails['amount']))
+                  .toString() +
+              " G",
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.green,
+            fontWeight: FontWeight.bold,
           ),
         ),
         SizedBox(width: 8),
