@@ -107,13 +107,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           "deposit"),
                       Card(
                           Icon(
-                            Icons.arrow_circle_up_rounded,
-                            color: Colors.black,
-                          ),
-                          "Reffer",
-                          "deposit"),
-                      Card(
-                          Icon(
                             Icons.money_off,
                             color: Colors.black,
                           ),

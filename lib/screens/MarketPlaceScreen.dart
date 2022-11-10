@@ -42,7 +42,7 @@ class _MarketPlaceScreenState extends State<MarketPlaceScreen> {
                 text: "Buy",
               ),
               Tab(
-                text: "Sell",
+                text: "Sale",
               ),
             ],
           ),

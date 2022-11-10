@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myapp/controller/TransactionController.dart';
 import 'package:myapp/presentations/TextInfo.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -16,7 +17,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final transactionController = Get.put(TransactionController());
   var balance_tk;
   var balance_gold;
+  var userInfo = [];
   checkBalance() async {
+    final prefs = await SharedPreferences.getInstance();
+    userInfo = prefs.getStringList('userInfo')!;
     var response = await transactionController.checkBalance();
     print("Log:: printing response from withdraw sereen!");
     print(response['balance']);
@@ -72,7 +76,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       height: 10,
                     ),
                     Text(
-                      "Maherab Hossain",
+                      userInfo.isNotEmpty ? userInfo[0] : "",
                       style: TextStyle(
                         color: basicTextColor,
                         fontWeight: FontWeight.w600,

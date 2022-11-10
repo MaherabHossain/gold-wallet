@@ -31,32 +31,34 @@ class _BuyScreenState extends State<BuyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.only(left: 10, right: 10, top: 20),
-        child: RefreshIndicator(
-            onRefresh: () async {},
-            color: Colors.green,
-            child: Obx(() => !marketPlaceController.isLoading.value
-                ? Column(
-                    children: [
-                      if (marketPlaceController.buyList != null)
-                        Column(
-                          children: [
-                            for (int i = 0;
-                                i < marketPlaceController.buyList.length;
-                                ++i)
-                              Card(marketPlaceController.buyList[i]),
-                          ],
-                        )
-                      else
-                        Center(
-                          child: Text("Not Available!"),
-                        )
-                    ],
-                  )
-                : Center(
-                    child: CircularProgressIndicator(),
-                  ))),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.only(left: 10, right: 10, top: 20),
+          child: RefreshIndicator(
+              onRefresh: () async {},
+              color: Colors.green,
+              child: Obx(() => !marketPlaceController.isLoading.value
+                  ? Column(
+                      children: [
+                        if (marketPlaceController.buyList != null)
+                          Column(
+                            children: [
+                              for (int i = 0;
+                                  i < marketPlaceController.buyList.length;
+                                  ++i)
+                                Card(marketPlaceController.buyList[i]),
+                            ],
+                          )
+                        else
+                          Center(
+                            child: Text("Not Available!"),
+                          )
+                      ],
+                    )
+                  : Center(
+                      child: CircularProgressIndicator(),
+                    ))),
+        ),
       ),
     );
   }
