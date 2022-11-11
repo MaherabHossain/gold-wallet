@@ -17,7 +17,7 @@ class MarketPlaceController extends GetxController {
     if (response['status']) {
       showToastMessage("Sale Added successfully!");
       Navigator.of(context).pop();
-      Get.to(HomePage());
+      // Get.to(HomePage());
     } else {
       showToastMessage("Something went wrong! try again");
       Navigator.of(context).pop();
@@ -30,9 +30,23 @@ class MarketPlaceController extends GetxController {
   getBuyList() async {
     isLoading.value = true;
     var response = await MarketPlaceRemoteServices.getBuyList();
+    var responses = await MarketPlaceRemoteServices.userSell();
+
+    if (response['status'] && responses['status']) {
+      buyList.value = response['data'];
+      sellList.value = responses['data'];
+    } else {
+      showToastMessage("Something went wrong!");
+    }
+    isLoading.value = false;
+  }
+
+  userSale() async {
+    isLoading.value = true;
+    var response = await MarketPlaceRemoteServices.userSell();
 
     if (response['status']) {
-      buyList.value = response['data'];
+      sellList.value = response['data'];
     } else {
       showToastMessage("Something went wrong!");
     }
@@ -41,5 +55,18 @@ class MarketPlaceController extends GetxController {
 
   buyGold(id) async {}
 
-  deleteSell(id) {}
+  deleteSell(id) async {
+    isLoading.value = true;
+    var response = await MarketPlaceRemoteServices.deleteSale(id);
+    print(response);
+    if (response['status']) {
+      showToastMessage("Sale deleted successfully!");
+      Get.offAll(HomePage(
+        marketPlaceScreen: true,
+      ));
+    } else {
+      showToastMessage("Something went wrong!");
+    }
+    isLoading.value = false;
+  }
 }

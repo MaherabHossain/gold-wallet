@@ -35,9 +35,10 @@ class _BuyScreenState extends State<BuyScreen> {
         child: Container(
           padding: EdgeInsets.only(left: 10, right: 10, top: 20),
           child: RefreshIndicator(
-              onRefresh: () async {},
-              color: Colors.green,
-              child: Obx(() => !marketPlaceController.isLoading.value
+            onRefresh: () async {},
+            color: Colors.green,
+            child: Obx(
+              () => !marketPlaceController.isLoading.value
                   ? Column(
                       children: [
                         if (marketPlaceController.buyList != null)
@@ -57,7 +58,9 @@ class _BuyScreenState extends State<BuyScreen> {
                     )
                   : Center(
                       child: CircularProgressIndicator(),
-                    ))),
+                    ),
+            ),
+          ),
         ),
       ),
     );
@@ -106,7 +109,7 @@ Widget Card(buyDetails) {
           (int.parse(buyDetails['unit_price']) *
                       int.parse(buyDetails['amount']))
                   .toString() +
-              " G",
+              " TK",
           style: TextStyle(
             fontSize: 20,
             color: Colors.green,

@@ -9,7 +9,8 @@ import 'package:myapp/screens/ProfileScreen.dart';
 
 class HomePage extends StatefulWidget {
   var buySellGold;
-  HomePage({this.buySellGold});
+  var marketPlaceScreen;
+  HomePage({this.buySellGold, this.marketPlaceScreen});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -21,6 +22,9 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     if (widget.buySellGold != null) {
       initialPage = 2;
+    }
+    if (widget.marketPlaceScreen != null) {
+      initialPage = 1;
     }
     super.initState();
   }
