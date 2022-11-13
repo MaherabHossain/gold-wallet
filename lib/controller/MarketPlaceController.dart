@@ -53,7 +53,17 @@ class MarketPlaceController extends GetxController {
     isLoading.value = false;
   }
 
-  buyGold(id) async {}
+  buyGold(id) async {
+    isLoading.value = false;
+    var response = await MarketPlaceRemoteServices.buyGold(id);
+    if (response['status']) {
+      showToastMessage("Successfull!");
+      getBuyList();
+    } else {
+      showToastMessage("Something ernt wrong!");
+    }
+    isLoading.value = false;
+  }
 
   deleteSell(id) async {
     isLoading.value = true;

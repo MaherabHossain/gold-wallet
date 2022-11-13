@@ -47,7 +47,8 @@ class _BuyScreenState extends State<BuyScreen> {
                               for (int i = 0;
                                   i < marketPlaceController.buyList.length;
                                   ++i)
-                                Card(marketPlaceController.buyList[i]),
+                                Card(marketPlaceController.buyList[i],
+                                    marketPlaceController),
                             ],
                           )
                         else
@@ -67,7 +68,7 @@ class _BuyScreenState extends State<BuyScreen> {
   }
 }
 
-Widget Card(buyDetails) {
+Widget Card(buyDetails, marketPlaceController) {
   return Container(
     margin: EdgeInsets.only(bottom: 10),
     height: 59,
@@ -118,7 +119,9 @@ Widget Card(buyDetails) {
         ),
         SizedBox(width: 8),
         InkWell(
-          onTap: () {},
+          onTap: () {
+            marketPlaceController.buyGold(buyDetails['id']);
+          },
           child: Center(
             child: Container(
               decoration: BoxDecoration(
