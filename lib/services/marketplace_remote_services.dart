@@ -129,12 +129,13 @@ class MarketPlaceRemoteServices {
       return data;
     }
     // print("LOG:: printing response form MARKETPLACE api!");
-    // print(response.body);
+    print(response.body);
     if (response.statusCode == 200) {
       if (jsonData['status'] != null) {
         return {
           "status": true,
           "data": jsonData['data'],
+          "user_id": jsonData['user_id']
         };
       }
     } else if (response.statusCode == 500) {

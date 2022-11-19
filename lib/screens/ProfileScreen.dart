@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:myapp/controller/TransactionController.dart';
 import 'package:myapp/presentations/TextInfo.dart';
+import 'package:myapp/screens/AuthScreen/LoginScreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -43,7 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         automaticallyImplyLeading: false,
         title: Container(
           child: Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "Profile",
@@ -53,6 +54,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              InkWell(
+                onTap: () async {
+                  // Obtain shared preferences.
+                  final prefs = await SharedPreferences.getInstance();
+                  final success = await prefs.remove('token');
+                  Get.offAll(LoginScreen());
+                },
+                child: Icon(Icons.logout),
+              )
             ],
           ),
         ),

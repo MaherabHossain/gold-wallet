@@ -35,8 +35,8 @@ class GoldRemoteServices {
       };
       return data;
     }
-    print("LOG:: printing response form home screen gold price api!");
-    print(response.body);
+    // print("LOG:: printing response form home screen gold price api!");
+    // print(response.body);
     if (response.statusCode == 200) {
       if (jsonData['data'] != null) {
         return {

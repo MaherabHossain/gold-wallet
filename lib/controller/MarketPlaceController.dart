@@ -9,6 +9,7 @@ class MarketPlaceController extends GetxController {
   var isLoading = false.obs;
   var sellList = [].obs;
   var buyList = [].obs;
+  var user_id = 0.obs;
   // newsList.value = response['data'];
 
   sellGold(info, context) async {
@@ -31,7 +32,7 @@ class MarketPlaceController extends GetxController {
     isLoading.value = true;
     var response = await MarketPlaceRemoteServices.getBuyList();
     var responses = await MarketPlaceRemoteServices.userSell();
-
+    user_id.value = response['user_id'];
     if (response['status'] && responses['status']) {
       buyList.value = response['data'];
       sellList.value = responses['data'];
@@ -39,6 +40,7 @@ class MarketPlaceController extends GetxController {
       showToastMessage("Something went wrong!");
     }
     isLoading.value = false;
+    return user_id;
   }
 
   userSale() async {
@@ -68,7 +70,7 @@ class MarketPlaceController extends GetxController {
   deleteSell(id) async {
     isLoading.value = true;
     var response = await MarketPlaceRemoteServices.deleteSale(id);
-    print(response);
+    // print(response);
     if (response['status']) {
       showToastMessage("Sale deleted successfully!");
       Get.offAll(HomePage(

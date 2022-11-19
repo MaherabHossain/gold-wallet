@@ -1,2 +1,2 @@
-String baseUrl = "http://192.168.1.3/api";
-String appUrl = "http://192.168.1.3";
+String baseUrl = "https://8445-37-111-207-83.in.ngrok.io/api";
+String appUrl = "https://8445-37-111-207-83.in.ngrok.io";

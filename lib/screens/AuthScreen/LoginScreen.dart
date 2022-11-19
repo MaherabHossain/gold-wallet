@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
       token = _token;
     }
     if (token.isNotEmpty) {
-      Get.off(HomePage());
+      Get.offAll(HomePage());
     }
   }
 
@@ -128,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                         if (response['status']) {
                                           showToastMessage(response['message']);
-                                          Get.to(HomePage());
+                                          Get.offAll(HomePage());
                                         } else {
                                           showToastMessage(response['message']);
                                         }

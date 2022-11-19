@@ -18,8 +18,13 @@ class BuyScreen extends StatefulWidget {
 
 class _BuyScreenState extends State<BuyScreen> {
   final marketPlaceController = Get.put(MarketPlaceController());
-  getBuyList() {
-    marketPlaceController.getBuyList();
+  var user_id;
+  getBuyList() async {
+    var user_id = await marketPlaceController.getBuyList();
+    // print("LOG:: user id");
+    // print(user_id);
+
+    setState(() {});
   }
 
   @override
@@ -47,8 +52,10 @@ class _BuyScreenState extends State<BuyScreen> {
                               for (int i = 0;
                                   i < marketPlaceController.buyList.length;
                                   ++i)
-                                Card(marketPlaceController.buyList[i],
-                                    marketPlaceController),
+                                Card(
+                                    marketPlaceController.buyList[i],
+                                    marketPlaceController,
+                                    marketPlaceController.user_id.value),
                             ],
                           )
                         else
@@ -68,7 +75,11 @@ class _BuyScreenState extends State<BuyScreen> {
   }
 }
 
-Widget Card(buyDetails, marketPlaceController) {
+Widget Card(buyDetails, marketPlaceController, user_id) {
+  print("user id " + user_id.toString());
+  if (user_id.toString() == buyDetails['user_id'].toString()) {
+    return Container();
+  }
   return Container(
     margin: EdgeInsets.only(bottom: 10),
     height: 59,
